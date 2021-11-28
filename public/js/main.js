@@ -2,9 +2,11 @@ $(document).ready(function(){
     datatable();
     form_send();
     hapus();
+    produk_tambah();
 });
 
 function datatable(){
+
     $('.datatable').each(function(){
 
         var _token = $('body').data('csrf-token');
@@ -100,4 +102,60 @@ function hapus() {
             }
         })
     });
+}
+
+function produk_tambah(){
+    $('.btn-produk-tambah').click(function(){
+        var produk_row = $('.table-produk-row tbody').html();
+
+        $('.table-produk tbody').append(produk_row);
+
+        produk_hapus();
+        produk_bahan_change();
+    });
+}
+
+function produk_hapus(){
+    $('.btn-produk-hapus').click(function(){
+        $this.parents('tr').remove();
+
+        produk_bahan_hapus()
+    });
+}
+
+function produk_bahan_change(){
+    $('[name="qty_produksi"]').on('keyup change', function(){
+        var id_produk = $(this).parents('td').siblings('td.produk').children('[name="id_produk"]').val();
+        var qty_produksi=$(this).val();
+
+        produk_bahan_proses(id_produk, qty_produksi);
+    });
+    $('[name="id_produk[]"]').on('keyup change', function(){
+        var id_produk=$(this).parents('td').siblings('td.qty').children('[name="qty+produksi[]"]').val();
+
+        produk_bahan_proses;
+    });
+}
+
+function produk_bahan_proses(id_produk, qty_produksi){
+    var _token = $('body').data('csrf_token');
+    var route_produksi_bahan_list = $('body').data('produksi-bahan-list');
+    var data_send = {
+        _token: _token,
+        id_produk: id_produk,
+        qty_produksi: qty_produksi
+    };
+
+    $.ajax({
+        url: route_produksi_bahan_list,
+        type: 'post',
+        data: data_send,
+        success: function(view){
+            $('.data-bahan-view').html(view);
+        }
+    });
+}
+
+function produk_bahan_hapus(){
+    $('.data-bahan').html('');
 }

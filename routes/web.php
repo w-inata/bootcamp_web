@@ -24,9 +24,4 @@ Route::post('/update/{id}', [Produksi::class, 'update'])->name('produksiUpdate')
 
 Route::delete('/delete/{id}', [Produksi::class, 'delete'])->name('produksiDelete');
 
-Route::get('/clear-cache', function () {
-    Artisan::call('cache::clear');
-    Artisan::call('config::cache');
-    Artisan::call('view::clear');
-    return "Cache is Cleared";
-});
+Route::post('/bahan/list', [Produksi::class, 'bahan_list'])->name('produksiBahanList');

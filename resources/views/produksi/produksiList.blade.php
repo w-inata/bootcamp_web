@@ -5,8 +5,6 @@
 @endsection
 
 @section('js')
-    <script src="{{ asset('assets/vendor/custom/datatables/datatables.bundle.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/demo/default/custom/crud/datatables/basic/paginations.js') }}" type="text/javascript"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 @endsection
 @section('content')
