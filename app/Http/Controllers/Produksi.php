@@ -6,6 +6,8 @@ use App\Models\mKomposisiProduk;
 use App\Models\mProduksi;
 use App\Models\mLokasi;
 use App\Models\mProduk;
+use App\Models\mBahan;
+use App\Models\mBahanProduksi;
 use Illuminate\Http\Request;
 
 class Produksi extends Controller
@@ -90,9 +92,11 @@ class Produksi extends Controller
     function create()
     {
         $lokasi = mLokasi::all();
+        $produk = mProduk::all();
 
         $data = [
-            'lokasi' => $lokasi
+            'lokasi' => $lokasi,
+            'produk' => $produk
         ];
 
         return view('produksi.produksiCreate', $data);
