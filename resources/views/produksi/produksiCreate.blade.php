@@ -161,16 +161,17 @@
             <tr>
                 <td class="produk">
                     <select name="id_produk" class="form-control">
+                        <option value="">Pilih Nama Produk</option>
                         @foreach ($produk as $row)
                             <option value="{{ $row->id }}">{{ $row->nama_produk }}</option>
                         @endforeach
                     </select>
                 </td>
                 <td class="qty">
-                    <input type="number" class="form-control" name="qty_produksi" value="0">
+                    <input type="number" class="form-control" name="qty_produksi[]" value="0">
                 </td>
                 <td>
-                    <textarea name="keterangan" class="form-control"></textarea>
+                    <textarea name="keterangan[]" class="form-control"></textarea>
                 </td>
                 <td>
                     <button type="button" class="btn btn-danger btn-produk-hapus">Hapus</button>

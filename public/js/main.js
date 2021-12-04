@@ -45,6 +45,7 @@ function datatable(){
 
 function form_send() {
     $('.form-send').submit(function (e) {
+
         e.preventDefault();
 
         var self = $(this);
@@ -57,6 +58,7 @@ function form_send() {
             type: self.attr('method'),
             data: self.serialize(),
             error: function(json){
+
                 $('.form-control-feedback').remove();
                 $('.form-group').removeClass('has-danger');
 
@@ -66,6 +68,7 @@ function form_send() {
                 });
             },
             success: function(json){
+
                 window.location.href = redirect;
             }
         });
@@ -105,7 +108,7 @@ function hapus() {
 }
 
 function produk_tambah(){
-    $('.btn-produk-tambah').click(function(){
+    $('.btn-produk-tambah').click(function() {
         var produk_row = $('.table-produk-row tbody').html();
 
         $('.table-produk tbody').append(produk_row);
@@ -124,16 +127,21 @@ function produk_hapus(){
 }
 
 function produk_bahan_change(){
-    $('[name="qty_produksi"]').on('keyup change', function(){
-        var id_produk = $(this).parents('td').siblings('td.produk').children('[name="id_produk"]').val();
+    $('[name="qty_produksi[]"]').on('keyup change', function(){
+        var id_produk = $(this).parents('td').siblings('td.produk').children('[name="id_produk[]"]').val();
         var qty_produksi=$(this).val();
+        
+        console.log('change qty_produksi', id_produk, qty_produksi);
 
         produk_bahan_proses(id_produk, qty_produksi);
     });
     $('[name="id_produk[]"]').on('keyup change', function(){
-        var id_produk=$(this).parents('td').siblings('td.qty').children('[name="qty+produksi[]"]').val();
+        var id_produk= $this.val();
+        var qty_produksi=$(this).parents('td').siblings('td.qty').children('[name="qty_produksi[]"]').val();
 
-        produk_bahan_proses;
+        console.log('chnge produk'. id_produk, qty_produksi);
+
+        produk_bahan_proses(id_produk, qty_produksi);
     });
 }
 
@@ -157,5 +165,5 @@ function produk_bahan_proses(id_produk, qty_produksi){
 }
 
 function produk_bahan_hapus(){
-    $('.data-bahan').html('');
+    $('.data-bahan-view').html('');
 }

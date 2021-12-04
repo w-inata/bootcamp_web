@@ -202,8 +202,8 @@
 					<div class="m-stack__item m-stack__item--left m-stack__item--middle m-stack__item--last">
 						<span class="m-footer__copyright">
 							{{ date('Y') }} &copy; Development By
-							<a href="https:://www.mahendrawardana.com" target="_blank" class="m-link">
-								Mahendra Wardana
+							<a href="#" target="_blank" class="m-link">
+								Winata
 							</a>
 						</span>
 					</div>
